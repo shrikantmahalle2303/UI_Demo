@@ -1,0 +1,82 @@
+<h1 *ngIf="isAddMode">Create Pickup Request</h1>
+<h1 *ngIf="!isAddMode">Edit Pickup Request</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="customerId">Customer ID</label>
+            <input type="number" formControlName="customerId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.customerId.errors }" />
+            <div *ngIf="submitted && f.customerId.errors" class="invalid-feedback">
+                <div *ngIf="f.customerId.errors.required"> Customer ID is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="invoiceNumber">Invoice Number</label>
+            <input type="text" formControlName="invoiceNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.invoiceNumber.errors }" />
+            <div *ngIf="submitted && f.invoiceNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.invoiceNumber.errors.required">Invoic eNumber is required</div>
+            </div>
+        </div>
+    </div>  
+
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="fromCode">From </label>
+            <input type="text" formControlName="fromCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fromCode.errors }" />
+            <div *ngIf="submitted && f.fromCode.errors" class="invalid-feedback">
+                <div *ngIf="f.fromCode.errors.required">From is required</div>
+            </div> 
+        </div> 
+        <div class="form-group col">
+            <label for="toCode">To</label>
+            <input type="text" formControlName="toCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.toCode.errors }" />
+            <div *ngIf="submitted && f.toCode.errors" class="invalid-feedback">
+                <div *ngIf="f.toCode.errors.required">To is required</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col">
+
+            <label for="loadType">Load Type</label>
+            <input type="number" formControlName="loadType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.loadType.errors }" />
+            <div *ngIf="submitted && f.loadType.errors" class="invalid-feedback">
+                <div *ngIf="f.loadType.errors.required">Load Type is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="status">Status</label>
+            <input type="number" formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" />
+            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                <div *ngIf="f.status.errors.required">Status is required</div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+
+            <label for="vehicleId">Vehicle ID</label>
+            <input type="number" formControlName="vehicleId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.vehicleId.errors }" />
+            <div *ngIf="submitted && f.vehicleId.errors" class="invalid-feedback">
+                <div *ngIf="f.vehicleId.errors.required"> Vehicle ID is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="driverId">Driver ID</label>
+            <input type="number" formControlName="driverId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.driverId.errors }" />
+            <div *ngIf="submitted && f.driverId.errors" class="invalid-feedback">
+                <div *ngIf="f.driverId.errors.required">Driver ID is required</div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/add-pickup" class="btn btn-link">Cancel</a>
+    </div>
+</form>

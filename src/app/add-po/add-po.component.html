@@ -1,0 +1,59 @@
+<h1>Add Purchase Order</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">
+<i class="fa fa-user-plus" style="font-size: 17px"></i>
+
+Add PO</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 10%"> CustomerID</th>
+            <th style="width: 10%">Name </th>
+            <th style="width: 10%"> Start Date</th>
+            <th style="width: 10%"> End Date </th>
+            <th style="width: 10%"> Description </th>
+            <th style="width: 10%"> Received Date </th>
+            <th style="width: 10%"> Active </th>
+            <th style="width: 10%"> CreatedBy </th>
+            <th style="width: 10%"> UpdatedBy </th>
+
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let us of po">
+            <td>{{us.customerId}}</td>
+            <td>{{us.name}}</td>
+            <td>{{us.startDate}}</td>
+            <td>{{us.endDate}}</td>
+            <td>{{us.description}}</td>
+            <td>{{us.receivedDateTime}}</td>
+            <td>
+            <ng-container *ngIf="us.isActive;then  yes; else no">
+            </ng-container>
+            <ng-template #yes>
+                <p>Y</p>
+            </ng-template>
+            <ng-template #no>
+                    <p>N</p>
+            </ng-template>
+            </td>
+            <td>{{us.createdBy}}</td>
+            <td>{{us.updatedBy}}</td>
+
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{us.purchaseOrderDetail1}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-user-edit" style="font-size: 17px"></i>Edit</a>
+                <button (click)="deletePo(us.purchaseOrderDetail1)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="us.isDeleting">
+                                        <i class="fa fa-trash" style="font-size: 17px"></i>
+
+                    <span *ngIf="us.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!us.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!po">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
